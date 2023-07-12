@@ -210,7 +210,7 @@ Thankfully, Prisma Cloud allows the Exampli Co. security team to scan all their 
 
 ![Alt text for image](/iac_screenshots/investigating-the-supply-chain-11.png "Optional title")
 
-12. Feel free to explore other templates and PR’s that have been submitted.
+12. Feel free to explore other templates and PR's that have been submitted.
 
 #### Cloud Security Posture Management
 
@@ -218,35 +218,35 @@ Cloud-native applications allow organizations to build and run scalable applicat
 
 In this section, you will explore some use cases for securing GKE resources and services.
 
-1. Let’s start with taking a look at the **Asset Inventory** page to get an idea of the scale of resources that are being monitored by this particular Prisma Cloud tenant.
+1. Let's start with taking a look at the **Asset Inventory** page to get an idea of the scale of resources that are being monitored by this particular Prisma Cloud tenant.
 
-2. Begin by using the navigation panel on the left hand side of the UI.
+2. Begin by using the navigation panel on the left hand side of the UI and go to **Inventory** and click on **Assets**.
 
 3. Ensure to use the filter and select **GCP** as the CloudType.
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-3.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-3-v2.png "Optional title")
 
 4. The **Asset Inventory** can be a helpful place to get a high level view on cloud assets and their compliance with defined policies. Without constant visibility of what is being deployed in your cloud footprint, you cannot begin to secure it.
 
 5. Your screen should look similar to the one below:
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-5.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-5-v2.png "Optional title")
 
-6. We know the Exampli Corp team is using Kubernetes. Let’s investigate further by clicking on the **Google Kubernetes Engine**.
+6. We know the Exampli Corp team is using Kubernetes. Let's investigate further by using additional filters. Add the **Service Name** filter and select **Google Kubernetes Engine**. In this filtered view, we can see 2 assets using Google Kubernetes Engine as a service. Click on the number next to **Total Assets**
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-6a.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-6a-v2.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-6b.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-6b-v2.png "Optional title")
 
-7. Here we can get a filtered view of the risky GKE clusters and some helpful information including the resource ID and Account ID, as well as where this resource is located. Let’s take a deeper look into **bank-of-anthos** and see this resource's history.
+7. Here we can get a filtered view of the risky GKE clusters and some helpful information including the resource ID and Account ID, as well as where this resource is located. Let's take a deeper look into **bank-of-anthos** and see this resource's history.
 
-8. Use the column on the left to quickly view Config and Alert information for this GKE cluster.
+8. Click on the **bank-of-anthos** Asset Name. A side panel will open on the right side to quickly view config and alert information for this GKE cluster.
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-8.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-8-v2.png "Optional title")
 
-9. Let's take a look at the raw config for this resource by clicking on the **code** icon.
+9. Let's take a look at the raw config for this resource by clicking on the **View Config** button
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-9.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-9-v2.png "Optional title")
 
 10. Here we can see the raw configuration for this GKE cluster. Do you see anything that might present risks?
 
@@ -277,14 +277,14 @@ Cloud account)
 
 ![Alt text for image](/iac_screenshots/cloud-security-posture-management-16b.png "Optional title")
 
-17. In addition to the asset inventory and leading cloud management database Prisma Cloud makes compliance incredibly easy. Let’s move on to the next exercise on compliance...
+17. In addition to the asset inventory and leading cloud management database Prisma Cloud makes compliance incredibly easy. Let's move on to the next exercise on compliance...
 
 #### Compliance in the Cloud
 
-Many organizations struggle maintaining a grasp on compliance in the cloud. So far we can inspected Exampli’s IaC and found some troubling trends. Additionally, at runtime many assets are still vulnerable due to risky configurations and careless development practices.
+Many organizations struggle maintaining a grasp on compliance in the cloud. So far we can inspected Exampli's IaC and found some troubling trends. Additionally, at runtime many assets are still vulnerable due to risky configurations and careless development practices.
 
-With multiple upcoming compliance audits bearing down on Exampli’s CISO’s calendar it's time to begin reporting on what is in a failed state and what needs to be done to get the
-organization’s cloud footprint compliant.
+With multiple upcoming compliance audits bearing down on Exampli's CISO's calendar it's time to begin reporting on what is in a failed state and what needs to be done to get the
+organization's cloud footprint compliant.
 
 1. Start by using the navigation bar and locate the **Compliance** module. Select **Overview**.
 
@@ -306,7 +306,7 @@ When Prisma Cloud detects a violation of a policy it generates an alert.
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-5.png "Optional title")
 
-6. We can now see Exampli’s associated assets and their compliance posture. Looking at the trend graph it is easy to see how Exampli Corp compliance has changed over time.
+6. We can now see Exampli's associated assets and their compliance posture. Looking at the trend graph it is easy to see how Exampli Corp compliance has changed over time.
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-6.png "Optional title")
 
@@ -316,7 +316,7 @@ When Prisma Cloud detects a violation of a policy it generates an alert.
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-7b.png "Optional title")
 
-8. This provides a focused view of Exampli’s GCP footprint and its adherence to this CIS
+8. This provides a focused view of Exampli's GCP footprint and its adherence to this CIS
 Standard.
 
 To view the associated policies with CIS click the **value** under the policies tab. Your screen should look similar to the screen capture below :
