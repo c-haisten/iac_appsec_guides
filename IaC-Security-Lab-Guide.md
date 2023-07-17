@@ -172,11 +172,11 @@ Fortunately, Prisma Cloud makes it easy for anyone to quickly determine how the 
 
 Be sure to select the **umman-manda/Exampli** repository from the drop-down window in the filters at the top.
 
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-3.png "Optional title")
+![Alt text for image](/iac_screenshots/investigating-the-supply-chain-3-v2.png "Optional title")
 
 4. Next, take a deeper look at the **gke.tf** template. This gke.tf template defines the Kubernetes deployment that Exampli is looking to push to production.
 
-Feel free to test the filters on the left side of the UI and search bar at the top to quickly locate templates.
+Feel free to use the filters at the top to quickly locate templates.
 
 ![Alt text for image](/iac_screenshots/investigating-the-supply-chain-4a.png "Optional title")
 
