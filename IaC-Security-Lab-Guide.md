@@ -11,18 +11,17 @@ context.
 
 ### Scenario
 
-The Exampli Corp, a mock corporation, product group is rushing to finish a banking app for
-their customer Bank of Anthos in time for the holiday season when spending patterns spike.
-Up against unrealistic deadlines the development and infrastructure teams are working
-around the clock to get their app built, tested, and released to hit their deadlines.
+The Exampli Corp, a mock corporation product group, is rushing to finish a banking app for
+their customer Bank of Anthos in time before the fiscal year ends.
+Up against challenging deadlines, the development and infrastructure teams are working
+around the clock to get their app built, tested, and released to hit their goals.
 
 Fortunately, Exampli Corp recently integrated Prisma Cloud into their development lifecycle
 adopting shift left security from code to cloud. Once in production Exampli Corps operations
 and security teams continue to leverage Prisma Cloud to monitor and protect runtime
 resources, reduce the attack surface, and enforce least privilege.
 
-Will The Exampli Corp team take the time to build a secure app? Or will the stress of
-completing the Bank of Anthos app in time for the holiday season lead to mistakes?
+Will The Exampli Corp team take the time to build a secure app? Or will the stress of rushing to complete the Bank of Anthos app in time lead to mistakes?
 
 ### Resources
 
@@ -43,7 +42,7 @@ below :
 
 ### Exercise
 
-Let's begin by exploring the power of shifting security left with Infrastructure as code
+Let's begin by exploring the power of shifting security left with Infrastructure as Code
 scanning. As infrastructure is being defined as code, security must be integrated with the
 tools developers use.
 
@@ -99,7 +98,7 @@ misconfiguration. Below is an example of how the policy box will look and the ty
 
 ![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-10.png "Optional title")
 
-11. This misconfiguration makes the application vulnerable to attacks that could reveal sensitive data such as user credentials and financial information. This error could lead to big problems for the Bank of Anthos. By using Prisma Cloud code security, the Exampli Corp security team can avoid costly mistakes and protect the integrity of the application.
+11. This misconfiguration makes the database available to the internet. This database contains Personally Identifiable Information such as user credentials and financial information. By using Prisma Cloud code security, the Exampli Corp security team can avoid costly mistakes and protect the integrity of the database and application. 
 
 **There are many other examples to explore in the Exampli repo, feel free to use the filters and search bar to explore additional resources and findings.**
 
@@ -111,7 +110,7 @@ Looking at the same **big_data.tf** template, there is another HIGH severity mis
 
 ![Alt text for image](/iac_screenshots/generating-pull-requests-1-v2.png "Optional title")
 
-2. This resource is a fully managed relational database service for MySQL, PostgreSQL and SQL Server. It is recommended to enable SSL but we can see it is not configured in this resource.
+2. This resource is a fully managed relational database service for MySQL, PostgreSQL and SQL Server. It is recommended to enable SSL but we can see it is not configured in this resource's template.
 
 **The Suppress and Fix capability requires increased RBAC capabilities and is not available to read-only users**
 
@@ -133,10 +132,13 @@ Looking at the same **big_data.tf** template, there is another HIGH severity mis
 
 ![Alt text for image](/iac_screenshots/generating-pull-requests-6.png "Optional title")
 
+Now that you have discovered the power and ease of remediating code fixes with Code security, let's explore how to detect and remediate exposed secrets embedded within Infrastructure as Code. 
+
 #### Identify Exposed Secrets
 
-Prisma Cloud also gives administrators the ability to detect exposed secrets. This is a powerful
-tool that can be utilized from the Project page.
+According to the [2023 Verizon Data Breach Report](https://www.verizon.com/business/resources/T34b/reports/2023-data-breach-investigations-report-dbir.pdf), **74%** of all breaches include the human element, with people being involved either via Error, Privilege Misuse, Use of stolen credentials or Social Engineering.
+
+Fortunately, Prisma Cloud makes it easy for anyone to quickly determine how the exposed secret can harm your organization and what steps must be taken. 
 
 1. From the Projects page, click on the **Secrets** tab and click on the **AWS Access Keys** secret type for the **providers.tf** file.
 
@@ -148,15 +150,15 @@ tool that can be utilized from the Project page.
 
 ![Alt text for image](/iac_screenshots/identify-exposed-secrets-2b-v2.png "Optional title")
 
-3. When accessing AWS programmatically users can select to use an access key to verify their identity, and the identity of their applications. An access key consists of an access key ID and a secret access key. Anyone with an access key has the same level of access to AWS resources.
+3. When accessing AWS programmatically, users can select to use an access key to verify their identity, and the identity of their applications. An access key consists of an access key ID and a secret access key. Anyone with an access key has the same level of access to AWS resources. These exposed AWS access credentials could let an unauthorized attacker access the Exampli Corp AWS account.
 
 **We recommend you protect access keys and keep them private. Specifically, do not store hard coded keys and secrets in infrastructure such as code, or other version-controlled configuration settings.**
 
-**According to the [2022 Verizon Data Breach Report](https://www.verizon.com/business/resources/T14f/reports/dbir/2022-data-breach-investigations-report-dbir.pdf), stolen access credentials are used in 80% of successful data breaches.**
+#### Building IaC Context Through Supply Chain Investigation
 
-Fortunately, Prisma Cloud makes it easy for anyone to quickly determine how the exposed secret can harm your organization and what steps must be taken. These exposed AWS access credentials could let an unauthorized attacker access the Exampli Corp AWS account.
+The supply chain capability within Code Security is a code-centric view of your infrastructure and application security that visualizes a supply chain graph, starting with the IaC templates, through the services. The supply chain graph is a real-time auto-discovery of potentially misconfigured infrastructure and application files, sorted into a neat data model that you can use to prioritize and search.
 
-#### Investigating the Supply Chain
+You can view all the files within the Exampli repository sorted based on the number of misconfigurations and vulnerabilities on the supply chain graph. The graph identifies infrastructure, image, open-source, and secrets and combines that data to identify risk chains.
 
 1. Use the navigation pane on the left hand and click the **blue arrow** on the lower left side of the UI to open up the navigation pane and move between the different modules within Prisma Cloud.
 
@@ -214,7 +216,7 @@ Thankfully, Prisma Cloud allows the Exampli Co. security team to scan all their 
 
 #### Cloud Security Posture Management
 
-Cloud-native applications allow organizations to build and run scalable applications with great agility and resilience. However, they also present unique security challenges. Ensuring applications and services are secure at runtime is a core responsibility for security teams.
+Cloud-native applications allow organizations to build and run scalable applications with great agility and resilience. However, they also present unique security challenges. Ensuring applications and services are secure at runtime is a core responsibility for security teams. CSPM tools can reduce the burden on cloud security teams by automating routine security monitoring, audits and remediations, allowing security teams to focus on high-priority items and prevent configuration drift. 
 
 In this section, you will explore some use cases for securing GKE resources and services.
 
@@ -302,7 +304,7 @@ When Prisma Cloud detects a violation of a policy it generates an alert.
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-4.png "Optional title")
 
-5. Your screen should look similar to the screen capture below :
+5. Your screen should look similar to the screen capture below:
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-5.png "Optional title")
 
@@ -368,6 +370,3 @@ The Prisma Cloud team here at Palo Alto sincerely hopes you enjoyed this worksho
 [KustomizeGoat - Vulnerable by design Kustomize deployment](https://github.com/bridgecrewio/kustomizegoat)
 
 [SupplyGoat- Vulnerable by design SCA](https://github.com/bridgecrewio/supplygoat)
-
-
-
