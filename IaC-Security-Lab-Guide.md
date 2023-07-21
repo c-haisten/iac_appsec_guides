@@ -11,7 +11,7 @@ context.
 
 ### Scenario
 
-The Exampli Corp, a mock corporation product group, is rushing to finish a banking app for
+The Exampli Corp, a mock corporation, is rushing to finish a banking app for
 their customer Bank of Anthos in time before the fiscal year ends.
 Up against challenging deadlines, the development and infrastructure teams are working
 around the clock to get their app built, tested, and released to hit their goals.
