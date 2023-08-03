@@ -145,11 +145,11 @@ Let's help Exampli Corp get a clear picture of the application running on the vu
 
 1. The Radar feature lets you gain a bird’s eye view to monitor and understand your cloud applications. It helps you visualize the connectivity between microservices and search for vulnerabilities. Navigate to **Compute -> Radar -> Containers** and select the cluster **bank-of-anthos**.
 
-![Alt text for image](/screenshots/maintaining-visibility-1.png "Optional title")
+![Alt text for image](/appsec_screenshots/maintaining-visibility-1.png "Optional title")
 
 2. Once you have selected the correct cluster your screen should look similar the the screenshot below:
 
-![Alt text for image](/screenshots/maintaining-visibility-2.png "Optional title")
+![Alt text for image](/appsec_screenshots/maintaining-visibility-2.png "Optional title")
 
 3. Radar provides a visual depiction of the connections between containers, apps, and cluster services across your environment. Take some time to play around with the Radar feature and think through the following questions:
 
@@ -158,17 +158,17 @@ How does this visibility help you protect your applications?**
 
 4. Let’s dive deeper into the **frontend:v0.5.5** microservice. Click on the associated container. Your screen should look similar to the screenshot below:
 
-![Alt text for image](/screenshots/preventing-attacks-3-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-3-v2.png "Optional title")
 
 5. Take some time to review the **Vulnerabilities** page.
 
-![Alt text for image](/screenshots/preventing-attacks-4.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-4.png "Optional title")
 
 6. Of the identified OS vulnerabilities, which one has the highest CVE? Do all the identified vulnerabilities contain a fix?
 
 7. Take a look at the **Layers** tab to view the dockerfile that built this image and find where vulnerabilities were introduced.
 
-![Alt text for image](/screenshots/preventing-attacks-6.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-6.png "Optional title")
 
 8. Find the file that added the most severe vulnerabilities and open it up by clicking on it to learn more about specifically what CVEs were added. Your screen should look similar to the screen capture below :
 
@@ -178,7 +178,7 @@ How does this visibility help you protect your applications?**
 
 9. Now that we have established some understanding of this container and have found some CVE's lets expand our knowledge by observing this workload's behavior using Prisma Cloud's foresnic modeling capabilities. Click the back arrow at the top right hand side of the UI and arrive back at the container summary view. Your screen should look similar to the screen capture below :
 
-![Alt text for image](/screenshots/preventing-attacks-3-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-3-v2.png "Optional title")
 
 #### Modeleing Application Behavior
 
@@ -190,13 +190,13 @@ Prisma Cloud observes and logs behavior such as running processes, network behav
 
 2. Here you can see all the events displayed. Let’s take a deeper look at these events to get some details and see what has been happening with our bank-of-anthos-frontend.
 
-![Alt text for image](/screenshots/investigate-incidents-at-runtime-5.png "Optional title")
+![Alt text for image](/appsec_screenshots/investigate-incidents-at-runtime-5.png "Optional title")
 
 3. To learn more please find the following documentation covering more details around runtime protection.(https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_containers)
 
 4. Now let's take a look at a summary view of some of the suscipious behaviors taking place on this workload. Please click the close button at the bottom left of the UI. You should be back at the summary page and your screen should look similar to the screen capture below :
 
-![Alt text for image](/screenshots/preventing-attacks-3.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-3.png "Optional title")
 
 5. Next, click on **Runtime** tab on the summary view. Here we can view highlights from the container's behavior and see if there are any security concerns with what the container is doing.
 
