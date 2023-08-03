@@ -56,7 +56,7 @@ In this exercise, we will take a look at some IaC templates within Exampli Corpâ
 
 #### Find and Fix Insecure Infrastructure Code
 
-1. Login to [Prisma Cloud](https://app4.prismacloud.io/auth/signin).
+1. Login to [Prisma Cloud](https://app3.prismacloud.io/auth/signin).
 
 2. Use the credentials provided by your Instructor to authenticate.
 
