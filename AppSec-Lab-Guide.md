@@ -194,9 +194,9 @@ Prisma Cloud observes and logs behavior such as running processes, network behav
 
 3. To learn more please find the following documentation covering more details around runtime protection.(https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_containers)
 
-4. Now let's take a look at a summary view of some of the suscipious behaviors taking place on this workload. Please click the close button at the bottom left of the UI. You should be back at the summary page and your screen should look similar to the screen capture below :
+4. Now let's take a look at a summary view of some of the suspicious behaviors taking place on this workload. Please click the close button at the bottom left of the UI. You should be back at the summary page and your screen should look similar to the screen capture below :
 
-![Alt text for image](/appsec_screenshots/preventing-attacks-3.png "Optional title")
+![Alt text for image](/appsec_screenshots/preventing-attacks-3-v2.png "Optional title")
 
 5. Next, click on **Runtime** tab on the summary view. Here we can view highlights from the container's behavior and see if there are any security concerns with what the container is doing.
 
