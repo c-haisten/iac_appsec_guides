@@ -226,6 +226,36 @@ Prisma Cloud observes and logs behavior such as running processes, network behav
 
 For more information about runtime rules and protection from Prisma Cloud check out our public documentation here. (https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_containers)
 
+#### Web Application Firewall and API Security
+
+In addition to image scanning, runtime visibility and protection; the Prisma Cloud defender also provides Web Application Firewall and API Security.
+
+1. To take a look let’s navigate back to **Radars -> Containers** and ensure you are viewing the **bank-of-anthos** app.
+
+![Alt text for image](/appsec_screenshots/maintaining-visibility-2.png "Optional title")
+
+2. The green firewall log indicates that the front-end microservice is protected by Prisma Cloud.
+
+3. Administrators can define rules to provide web application and api security capabilities to protect web applications. Prisma Cloud supports VM Hosts, Containers, Embedded Applications, and function deployment architectures.
+
+![Alt text for image](/appsec_screenshots/preventing-attacks-10.png "Optional title")
+
+4. Administrators can define Custom Rules that provide Virtual Patching capabilities to protect against attacks exploiting CVE’s that have not yet been patched. For example check out the log4j blog where you can find more information about custom rules that were created to protect our customers. [Link](https://www.paloaltonetworks.com/blog/prisma-cloud/log-4-shell-vulnerability/)
+
+5. Take a look at some of the attacks the defender has detected by navigating to **Monitor -> Events -> WAAS for containers**.
+
+![Alt text for image](/appsec_screenshots/preventing-attacks-12-v2.png "Optional title")
+
+6. Let’s dive into one of the **OS Command Injection** attacks. Click the **total** value to view the events.
+
+![Alt text for image](/appsec_screenshots/preventing-attacks-13-v2.png "Optional title")
+
+7. Select one of the entries and answer the questions below:
+
+What was the result of the attack?
+Was it blocked?
+What was the http method that was used in the attack?
+What container image was attacked?
 
 
 ## Summary \ Resources
