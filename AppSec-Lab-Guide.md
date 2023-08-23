@@ -74,7 +74,7 @@ Administrators can click suppress, or fix. The suppress button allows you to dis
 
 **Suppress and Fix requires increased RBAC that is not available in this lab**
 
-8. You can also click the “Details” or “Errors” tab on the right side of the page to get some more information on the dangers of the specific vulnerability.
+8. You can also click the “Details” or “Issues” tab on the right side of the page to get some more information on the dangers of the specific vulnerability.
 
 ![Alt text for image](/appsec_screenshots/software-composition-analysis-8-v2.png "Optional title")
 
