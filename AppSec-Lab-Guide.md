@@ -85,15 +85,15 @@ On this page Exampli Corp developers can gain context on the CVE and click on th
 10. In Prisma Cloud licenses are scanned in parallel to vulnerability scanning. This means that Exampli Corp developers can make sure they are remaining compliant when working with open source packages. Adjust your filter to **Category -> Licenses** and
 let's see if there are any licensing issues in the Bank of Anthos Repo.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-10.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-10-v2.png "Optional title")
 
 11. Now, let's scroll down and look at some of the licensing issues identified by Prisma Cloud.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-11.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-11-v2.png "Optional title")
 
 12. By Clicking on the license type Prisma Cloud provides developers with critical information and identifies each policy violation as a single error.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-12.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-12-v2.png "Optional title")
 
 Now that we have found some vulnerabilities and licensing violations in our Application code, let's take a look at how Prisma Cloud can give us visibility to the package manager files that comprise applications by taking a look at the supply chain and software composition analysis (SCA).
 
@@ -115,7 +115,7 @@ Now that we have found some vulnerabilities and licensing violations in our Appl
 
 4. Next, take a deeper look at the **requirements.txt** file. Feel free to test the filters on the left side of the UI and search bar at the top to quickly locate templates.
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-4.png "Optional title")
+![Alt text for image](/appsec_screenshots/supply-chain-security-4-v2.png "Optional title")
 
 5. Once you have found the **requirements.txt** file click on the first package that is unpacked, **cryptography: 38.0.1**. Notice on the right side of the UI there is additional information about this resource.
 
@@ -123,11 +123,11 @@ Here we can quickly identify valuable information like the package version, lice
 
 6. Your screen should look similar to the screenshot below.
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-6.png "Optional title")
+![Alt text for image](/appsec_screenshots/supply-chain-security-6-v2.png "Optional title")
 
-7. Next, click on the **Errors** tab to investigate policy violations and vulnerabilities.
+7. Next, click on the **Issues** tab to investigate policy violations and vulnerabilities.
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-7.png "Optional title")
+![Alt text for image](/appsec_screenshots/supply-chain-security-7-v2.png "Optional title")
 
 8. How many Vulnerabilities are associated with the **cryptography: 38.0.1** package? Read the **Details** section to discover more about the CVE and confirm the **Fix Version**. Are there other packages with a higher CVSS score?
 
