@@ -52,7 +52,7 @@ Let's begin by exploring the power of shifting security left with Infrastructure
 
 2. Use the credentials provided by your Instructor to authenticate.
 
-3. Use the navigation pane on the left hand and click the **blue arrow** on the lower left side of the UI to open up the navigation pane and move between the different modules within Prisma Cloud.
+3. Use the dropdown window in the upper left corner to select the three different security focuses within Prisma Cloud. Select **Application Security**.
 
 ![Alt text for image](/appsec_screenshots/software-composition-analysis-3.png "Optional title")
 
