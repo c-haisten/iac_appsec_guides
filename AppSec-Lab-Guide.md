@@ -56,48 +56,47 @@ Let's begin by exploring the power of shifting security left with Infrastructure
 
 ![Alt text for image](/appsec_screenshots/software-composition-analysis-3.png "Optional title")
 
-4. Next, use the navigation pane to select the **Code Security** module and then select **Projects**.
+4. Next, use the navigation pane on the left to select **Projects** under the **Code** section.
 
 ![Alt text for image](/appsec_screenshots/software-composition-analysis-4.png "Optional title")
 
-5. Ensure that you select the **c-haisten/bank-of-anthos** repository.
+5. Ensure that you select the **c-haisten/bank-of-anthos** repository in the Repositories filter.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-5-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-5.png "Optional title")
 
 6. Once you have selected the correct repository, it will show you all the security incidents found in the code of that branch. Let’s check to see if there are any serious vulnerabilities by filtering **Severities -> High.**
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-6-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-6.png "Optional title")
 
 7. Next, we will select a CVE ID to investigate the vulnerability and determine what next steps to take. Prisma Cloud gives us several options for how to interact with the vulnerability.
 
-Administrators can click suppress, or fix. The suppress button allows you to dismiss all incidents that fall under that specific policy violation. The fix button will allow you to remediate the vulnerability via a bump fix. Here we can see that the vulnerability can be fixed easily by bumping from v2.7.4 to 2.7.5.
+Administrators can click suppress, or fix. The suppress button allows you to dismiss all incidents that fall under that specific policy violation. The fix button will allow you to remediate the vulnerability via a bump fix. Here we can see that the vulnerability can be fixed easily by bumping from v1.49.1 to at least v1.53.0.
 
 **Suppress and Fix requires increased RBAC that is not available in this lab**
 
 8. You can also click the “Details” or “Issues” tab on the right side of the page to get some more information on the dangers of the specific vulnerability.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-8-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-8.png "Optional title")
 
 9. This CVE has a CVSS score of 7. It makes Exampli Corp’s Bank of Anthos app vulnerable to information leaks and privilege escalation. 
 
 On this page Exampli Corp developers can gain context on the CVE and click on the link to NIST providing them with all the details and documentation regarding the vulnerability.
 
-10. In Prisma Cloud licenses are scanned in parallel to vulnerability scanning. This means that Exampli Corp developers can make sure they are remaining compliant when working with open source packages. Adjust your filter to **Category -> Licenses** and
-let's see if there are any licensing issues in the Bank of Anthos Repo.
+10. In Prisma Cloud, secrets are scanned in parallel to vulnerability scanning. This means that Exampli Corp developers can make sure any exposed and vulnerable secrets are detected and remediated. Reset the filters and select **Code Categories -> Secrets** to see if there are any secrets issues in the Bank of Anthos Repo.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-10-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-10.png "Optional title")
 
-11. Now, let's scroll down and look at some of the licensing issues identified by Prisma Cloud.
+11. Now, let's scroll down and look at some of the secrets issues identified by Prisma Cloud.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-11-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-11.png "Optional title")
 
-12. By Clicking on the license type Prisma Cloud provides developers with critical information and identifies each policy violation as a single error.
+12. By Clicking on the file, Prisma Cloud provides developers with critical information and identifies each secrets violation as a single error.
 
-![Alt text for image](/appsec_screenshots/software-composition-analysis-12-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-composition-analysis-12.png "Optional title")
 
-Now that we have found some vulnerabilities and licensing violations in our Application code, let's take a look at how Prisma Cloud can give us visibility to the package manager files that comprise applications by taking a look at the supply chain and software composition analysis (SCA).
+Now that we have found some vulnerabilities and secrets violations in our Application code, let's take a look at how Prisma Cloud can give us visibility to the package manager files that comprise applications by taking a look at the Software Bill of Materials (SBOM).
 
-### Supply Chain Security
+### Software Bill of Materials
 
 1. Use the navigation pane on the left hand and click the **blue arrow** on the lower left side of the UI to open up the navigation pane and move between the different modules within Prisma Cloud.
 
