@@ -98,39 +98,31 @@ Now that we have found some vulnerabilities and secrets violations in our Applic
 
 ### Software Bill of Materials
 
-1. Use the navigation pane on the left hand and click the **blue arrow** on the lower left side of the UI to open up the navigation pane and move between the different modules within Prisma Cloud.
+1. While in the **Application Security** view, use the navigation pane on the left side and click **SBOM** under the **Visibility** section.
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-1.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-1.png "Optional title")
 
-2. Next, use the navigation pane to select the Code Security module and select Supply Chain.
+2. Next, use the search bar on the right side to search for **crypto**.
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-2a.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-2.png "Optional title")
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-2b.png "Optional title")
+3. Click on the **cryptography** package to see additional information such as version, license type and vulnerabilities. 
 
-3. Use the Supply Chain Graph to view the relationships between different IaC templates and the types of software packages and services they provision. Be sure to select the bank-of-anthos repository from the drop-down window in the filters at the top.
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-3.png "Optional title")
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-3.png "Optional title")
+4. Next, take a deeper look at the cryptography package file by looking at the **Issues** and **Repositories** tabs.
 
-4. Next, take a deeper look at the **requirements.txt** file. Feel free to test the filters on the left side of the UI and search bar at the top to quickly locate templates.
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-4a.png "Optional title")
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-4-v2.png "Optional title")
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-4b.png "Optional title")
 
-5. Once you have found the **requirements.txt** file click on the first package that is unpacked, **cryptography: 38.0.1**. Notice on the right side of the UI there is additional information about this resource.
+5. In the Issues tab, how many vulnerabilities are present in the cryptography package? Use the dropdown window to locate CVE's and read more about them. 
 
-Here we can quickly identify valuable information like the package version, license type and privileges.
+![Alt text for image](/appsec_screenshots/software-bill-of-materials-5.png "Optional title")
 
-6. Your screen should look similar to the screenshot below.
+6. Use the Repositories tab to discover which file is introducing the vulnerable software package. How many repos are impacted? Is it in the same location or multiple?
 
-![Alt text for image](/appsec_screenshots/supply-chain-security-6-v2.png "Optional title")
-
-7. Next, click on the **Issues** tab to investigate policy violations and vulnerabilities.
-
-![Alt text for image](/appsec_screenshots/supply-chain-security-7-v2.png "Optional title")
-
-8. How many Vulnerabilities are associated with the **cryptography: 38.0.1** package? Read the **Details** section to discover more about the CVE and confirm the **Fix Version**. Are there other packages with a higher CVSS score?
-
-Now that you have helped to protect the Bank of Anthos banking app Software Supply Chain, let’s take a look at the recent activity of the Exampli Corp developers.
+Now that you have helped to protect the Bank of Anthos banking app by investigating the SBOM, let’s take a look at the recent activity of the Exampli Corp developers.
 
 ### Protect Critical Applications
 
@@ -142,11 +134,11 @@ Prisma Cloud supports a massive amount of compute types, to review the supported
 
 Let's help Exampli Corp get a clear picture of the application running on the vulnerable GKE cluster from the previous section. Start by taking a look at the microservices running the Bank of Anthos application using Prisma Cloud’s Radar feature.
 
-1. The Radar feature lets you gain a bird’s eye view to monitor and understand your cloud applications. It helps you visualize the connectivity between microservices and search for vulnerabilities. Navigate to **Compute -> Radar -> Containers** and select the cluster **bank-of-anthos**.
+1. The Radars feature lets you gain a bird’s eye view to monitor and understand your cloud applications. It helps you visualize the connectivity between microservices and search for vulnerabilities. Use the dropdown window in the upper left corner to select the **Runtime Security** focus and select **Containers** under the **Radars** section. Select the cluster **bank-of-anthos**.
 
 ![Alt text for image](/appsec_screenshots/maintaining-visibility-1.png "Optional title")
 
-2. Once you have selected the correct cluster your screen should look similar the the screenshot below:
+2. Once you have selected the correct cluster your screen should look similar to the screenshot below:
 
 ![Alt text for image](/appsec_screenshots/maintaining-visibility-2.png "Optional title")
 
@@ -175,7 +167,7 @@ How does this visibility help you protect your applications?**
 
 **We can see that this particular file introduced a ton of vulnerabilities including the usage of openssl version 1.1 which is susceptable to a number of malicious exploits.** 
 
-9. Now that we have established some understanding of this container and have found some CVE's lets expand our knowledge by observing this workload's behavior using Prisma Cloud's foresnic modeling capabilities. Click the back arrow at the top right hand side of the UI and arrive back at the container summary view. Your screen should look similar to the screen capture below :
+9. Now that we have established some understanding of this container and have found some CVE's lets expand our knowledge by observing this workload's behavior using Prisma Cloud's forensic modeling capabilities. Click the back arrow at the top right hand side of the UI and arrive back at the container summary view. Your screen should look similar to the screen capture below :
 
 ![Alt text for image](/appsec_screenshots/preventing-attacks-3-v2.png "Optional title")
 
@@ -205,7 +197,7 @@ Prisma Cloud observes and logs behavior such as running processes, network behav
 
 ![runtime-summary](https://github.com/c-haisten/c2c_summit/assets/98335592/d751a357-11a1-437a-a0c3-95e30404752d)
 
-7. Find the audit finding of a foriegn binary execution of tcpdump and click on it. If you have trouble finding it you can type tcpdump in the search bar at the top of the UI.
+7. Discover any audit findings with tcpdump activity and click on it. If you have trouble finding it you can type tcpdump in the search bar at the top of the UI.
 
 ![runtime-summary-1](https://github.com/c-haisten/c2c_summit/assets/98335592/24adb5ff-5f69-43af-b388-8ab63ae9929b)
 
@@ -213,15 +205,15 @@ Prisma Cloud observes and logs behavior such as running processes, network behav
 
 8. This view provides an expanded understanding of the finding. We can see that Prisma Cloud alerted on this finding due to the default rule to alert on suspicious behavior. Administrators can configure their own rules alert on or block malicious activity.
 
-9. Creating rules to defend applications is easy in Prisma Cloud. Use the navigation bar on the left hand side of the UI and select **Compute -> Defend -> Runtime**.
+9. Creating rules to defend applications is easy in Prisma Cloud by using the navigation bar on the left hand side of the UI and selecting **Runtime** under the **Defend** section.
 
-![runtime-rules](https://github.com/c-haisten/c2c_summit/assets/98335592/1332f7ea-c45f-4004-8eba-2d30a98b9cfc)
+![Alt text for image](/appsec_screenshots/preventing-attacks-9.png "Optional title")
 
-10. On this page administrators can configure rules that make sense for their applications. There is a great deal of granularity given to Prisma Cloud administrators to configure allowed process, networking, and file system actitivies. Prisma Cloud defenders are also integrated with Palo Alto Network's WildFire anti-malware service allowing for the blocking of malware found on the application.
+10. On this page administrators can configure rules that make sense for their applications. There is a great deal of granularity given to Prisma Cloud administrators to configure allowed process, networking, and file system activities. Prisma Cloud defenders are also integrated with Palo Alto Network's WildFire anti-malware service allowing for the blocking of malware found on the application.
 
 ![runtime-rules-blocking](https://github.com/c-haisten/c2c_summit/assets/98335592/3b0f5dcb-7e1f-4668-bf90-40d41964bf41)
 
-**Feel free to explore the different pages, because this is a lab you will have limited permissions and are not able to edit or create rules.**
+**Because this is a lab you will have limited permissions and are not able to edit or create rules, however feel free to explore the different pages.**
 
 For more information about runtime rules and protection from Prisma Cloud check out our public documentation here. (https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_containers)
 
