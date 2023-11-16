@@ -42,53 +42,47 @@ below :
 
 ### Exercise
 
-Let's begin by exploring the power of shifting security left with Infrastructure as Code
-scanning. As infrastructure is being defined as code, security must be integrated with the
-tools developers use.
+Let's begin by exploring the power of shifting security left with Infrastructure as Code scanning. As infrastructure is being defined as code, security must be integrated with the tools developers use.
 
-Fortunately, Prisma Cloud can be integrated into the development pipeline and tools
-developers use to secure IaC. With Bridgecrew from Prisma Cloud you can begin leveraging
-the open source tool Checkov for free.
+Fortunately, Prisma Cloud can be integrated into the development pipeline and tools developers use to secure IaC. Prisma Cloud IaC security is built on the open source project Checkov. Checkov is a policy-as-code tool with millions of downloads that checks for misconfigurations in IaC templates such as Terraform, CloudFormation, Kubernetes, Helm, ARM Templates and Serverless framework.
 
-To learn more visit: https://bridgecrew.io/checkov/
+To learn more visit: https://www.paloaltonetworks.com/prisma/cloud/infrastructure-as-code-security
 
 In this exercise, we will take a look at some IaC templates within Exampli Corp’s repository.
 
 #### Find and Fix Insecure Infrastructure Code
 
-1. Login to [Prisma Cloud](https://app3.prismacloud.io/auth/signin).
+1. Login to [Prisma Cloud](https://app3.prismacloud.io/login).
 
 2. Use the credentials provided by your Instructor to authenticate.
 
-3. Use the navigation pane on the left hand and click the **blue arrow** on the lower left
-side of the UI to open up the navigation pane and move between the different
-modules within Prisma Cloud.
+3. Use the dropdown window in the upper left corner to select the three different security focuses within Prisma Cloud. Select **Application Security**.
 
 ![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-3.png "Optional title")
 
-4. Next, use the navigation pane to select the **Code Security** module and then select
-**Projects.**
+4. Next, use the navigation pane on the left to select **Projects** under the **Code** section.
 
 ![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-4.png "Optional title")
 
-5. Click on the **IaC Misconfiguration** tab and in the **Repositories** drop down, select the **umman-manda/Exampli** repository
+5. Click on the **IaC Misconfiguration** tab and in the **Repositories** drop down, select the **c-haisten/Exampli** repository
 
-![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-5-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-5.png "Optional title")
 
-6. Once you have selected the correct repository, filter by "High" severity and let's take a
-look at some troubling misconfigurations found in the GCP Terraform templates. Click on the search icon ![Alt text for image](/iac_screenshots/search-icon.png "Optional title") and search for **SQL**
+6. Once you have selected the correct repository, filter by "High" severity and let's take a look at some troubling misconfigurations found in the GCP Terraform templates. Click on the search icon ![Alt text for image](/iac_screenshots/search-icon.png "Optional title") and search for **SQL**
 
-![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-6-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-6a.png "Optional title")
+
+![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-6b.png "Optional title")
 
 7. Now that we have filtered by severity and search term, explore the different misconfigurations and
-click on the one that says **_GCP SQL database is publicly accessible._**
+click on the Resource associated with the **_GCP SQL database is publicly accessible_** policy.
 
-![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-7-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-7.png "Optional title")
 
 8. Note the side panel window after clicking the policy. Click on the **See policy documentation** hyperlink to see guidelines on how to resolve the
 misconfiguration. Below is an example of how the policy box will look and the type of information you will see.
 
-![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-8-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/find-and-fix-insecure-infrastructure-code-8.png "Optional title")
 
 9. Reviewing the guidelines we can see the description of this misconfiguration, its potential risk, and how to remediate at build time and runtime.
 
@@ -108,17 +102,17 @@ misconfiguration. Below is an example of how the policy box will look and the ty
 
 Looking at the same **big_data.tf** template, there is another HIGH severity misconfiguration for lack of SSL on SQL database connections.
 
-![Alt text for image](/iac_screenshots/generating-pull-requests-1-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/generating-pull-requests-1.png "Optional title")
 
 2. This resource is a fully managed relational database service for MySQL, PostgreSQL and SQL Server. It is recommended to enable SSL but we can see it is not configured in this resource's template.
 
 **The Suppress and Fix capability requires increased RBAC capabilities and is not available to read-only users**
 
-3. Pull requests have been created previously for various findings. To access the VCS associated with this IaC resource click the git link. We can also see the developer who committed the last change associated with this IaC resource.
+3. Pull requests have been created previously for various findings. To access the VCS associated with this IaC resource click the git link under the Details tab. We can also see the developer who committed the last change associated with this IaC resource.
 
-![Alt text for image](/iac_screenshots/generating-pull-requests-3a-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/generating-pull-requests-3a.png "Optional title")
 
-![Alt text for image](/iac_screenshots/generating-pull-requests-3b-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/generating-pull-requests-3b.png "Optional title")
 
 4. After clicking the git link we see the last commit associated with the **big_data.tf** IaC template. Highlighted is the **ip_configuration** parameter which does not include the SSL enablement.
 
@@ -128,7 +122,7 @@ Looking at the same **big_data.tf** template, there is another HIGH severity mis
 
 ![Alt text for image](/iac_screenshots/generating-pull-requests-5.png "Optional title")
 
-6. Once on the Pull Requests view take a look at [PR #34](https://github.com/umman-manda/Exampli/pull/34) and its associated [commit](https://github.com/umman-manda/Exampli/pull/34/commits/d1360871240084945b5d7d09d087e195241b9e22). Examining the changes, the ‘require_ssl = true’ setting has been added to the big_data.tf template.
+6. Once on the Pull Requests view take a look at the [PR](https://github.com/c-haisten/Exampli/pull/1) and its associated [commit](https://github.com/c-haisten/Exampli/pull/1/commits/a79745d0a19acc3418db6fcd7ce40e11659de75a). Examining the changes, the ‘require_ssl = true’ setting has been added to the big_data.tf template.
 
 ![Alt text for image](/iac_screenshots/generating-pull-requests-6.png "Optional title")
 
@@ -140,79 +134,19 @@ According to the [2023 Verizon Data Breach Report](https://www.verizon.com/busin
 
 Fortunately, Prisma Cloud makes it easy for anyone to quickly determine how the exposed secret can harm your organization and what steps must be taken. 
 
-1. From the Projects page, click on the **Secrets** tab and click on the **AWS Access Keys** secret type for the **providers.tf** file.
+1. From the Projects page, click on the **Secrets** tab and click on the **AWS Access Keys** secret type for the **providers.tf** file. Make sure the SQL search from the previous exercise is cleared. 
 
-![Alt text for image](/iac_screenshots/identify-exposed-secrets-1-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/identify-exposed-secrets-1.png "Optional title")
 
 2. Take a closer look at the **providers.tf** template in the side panel window. Here we can see an access key hardcoded in the template. Click on the **Manual Fix** button to be taken directly to the file on github. From there you can see the full template and make necessary changes. 
 
-![Alt text for image](/iac_screenshots/identify-exposed-secrets-2a-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/identify-exposed-secrets-2a.png "Optional title")
 
 ![Alt text for image](/iac_screenshots/identify-exposed-secrets-2b-v2.png "Optional title")
 
 3. When accessing AWS programmatically, users can select to use an access key to verify their identity, and the identity of their applications. An access key consists of an access key ID and a secret access key. Anyone with an access key has the same level of access to AWS resources. These exposed AWS access credentials could let an unauthorized attacker access the Exampli Corp AWS account.
 
 **We recommend you protect access keys and keep them private. Specifically, do not store hard coded keys and secrets in infrastructure such as code, or other version-controlled configuration settings.**
-
-#### Building IaC Context Through Supply Chain Investigation
-
-The supply chain capability within Code Security is a code-centric view of your infrastructure and application security that visualizes a supply chain graph, starting with the IaC templates, through the services. The supply chain graph is a real-time auto-discovery of potentially misconfigured infrastructure and application files, sorted into a neat data model that you can use to prioritize and search.
-
-You can view all the files within the Exampli repository sorted based on the number of misconfigurations and vulnerabilities on the supply chain graph. The graph identifies infrastructure, image, open-source, and secrets and combines that data to identify risk chains.
-
-1. Use the navigation pane on the left hand and click the **blue arrow** on the lower left side of the UI to open up the navigation pane and move between the different modules within Prisma Cloud.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-1.png "Optional title")
-
-2. Next, use the navigation pane to select the **Code Security** module and select **Supply Chain**.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-2a.png "Optional title")
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-2b.png "Optional title")
-
-3. Use the Supply Chain Graph to view the relationships between different IaC templates and the types of infrastructure and services they provision.
-
-Be sure to select the **umman-manda/Exampli** repository from the drop-down window in the filters at the top.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-3-v2.png "Optional title")
-
-4. Next, take a deeper look at the **gke.tf** template. This gke.tf template defines the Kubernetes deployment that Exampli is looking to push to production.
-
-Feel free to use the filters at the top to quickly locate templates.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-4a.png "Optional title")
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-4b.png "Optional title")
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-4c.png "Optional title")
-
-5. Once you have found the **gke.tf** template click on the first resource **google_container_cluster.workload_cluster**. Notice on the right side of the UI there is additional information about this resource
-
-6. Your screen should look similar to the screenshot below.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-6.png "Optional title")
-
-7. Here we can quickly identify valuable information like related resources that this resource may depend on. The amount of infrastructure dependencies that modern software relies on is only increasing.
-
-Thankfully, Prisma Cloud allows the Exampli Co. security team to scan all their IaC and remediate findings with single click Pull Requests to mitigate any vulnerabilities found.
-
-8. You can easily view the original scan by tabbing over and seeing where errors were identified.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-8.png "Optional title")
-
-9. To easily fix these issues, authorized administrators can initiate a pull request with a single click from the Prisma Cloud UI. **This feature is not available for read-only users.**
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-9.png "Optional title")
-
-10. We have submitted a pull request in advance that can be viewed at the following [link](https://github.com/c-haisten/ZT-Road-Show/pulls).
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-10.png "Optional title")
-
-11. Dig into the PR and take a look at the requested changes to the **gke.tf** template.
-
-![Alt text for image](/iac_screenshots/investigating-the-supply-chain-11.png "Optional title")
-
-12. Feel free to explore other templates and PR's that have been submitted.
 
 #### Cloud Security Posture Management
 
@@ -222,122 +156,91 @@ In this section, you will explore some use cases for securing GKE resources and 
 
 1. Let's start with taking a look at the **Asset Inventory** page to get an idea of the scale of resources that are being monitored by this particular Prisma Cloud tenant.
 
-2. Begin by using the navigation panel on the left hand side of the UI and go to **Inventory** and click on **Assets**.
+2. Begin by clicking on the **Inventory** tab at the top and click on **Assets**.
 
-3. Ensure to use the filter and select **GCP** as the CloudType.
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-2.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-3-v2.png "Optional title")
+3. The **Asset Inventory** can be a helpful place to get a high level view on cloud assets and their compliance with defined policies. Without constant visibility of what is being deployed in your cloud footprint, you cannot begin to secure it.
 
-4. The **Asset Inventory** can be a helpful place to get a high level view on cloud assets and their compliance with defined policies. Without constant visibility of what is being deployed in your cloud footprint, you cannot begin to secure it.
+4. Your screen should look similar to the one below:
 
-5. Your screen should look similar to the one below:
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-4.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-5-v2.png "Optional title")
+5. We know the Exampli Corp team is using Kubernetes. Let's investigate further by clicking on **GCP** under the **Cloud** column. Here we can see all GCP services in use.
 
-6. We know the Exampli Corp team is using Kubernetes. Let's investigate further by using additional filters. Add the **Service Name** filter and select **Google Kubernetes Engine**. In this filtered view, we can see 2 assets using Google Kubernetes Engine as a service. Click on the number next to **Total Assets**
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-5.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-6a-v2.png "Optional title")
+6. We can see several issues associated with **Google Compute Engine**. Click on this service name to drill down further. On the next page we can see issues associated with **Google Compute Engine VM Instance**. Click on the Total assets to investigate.
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-6b-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-6.png "Optional title")
 
-7. Here we can get a filtered view of the risky GKE clusters and some helpful information including the resource ID and Account ID, as well as where this resource is located. Let's take a deeper look into **bank-of-anthos** and see this resource's history.
+7. Click on the **gke-bank-of-anthos-default-pool-681c740d-ob6o** Asset Name. A side panel will open on the right side to quickly see an Overview, Attack Paths, Alerts, Vulnerabilities and more for this GKE cluster.
 
-8. Click on the **bank-of-anthos** Asset Name. A side panel will open on the right side to quickly view config and alert information for this GKE cluster.
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-7.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-8-v2.png "Optional title")
+8. Let's take a look at the raw config for this resource by clicking on the **View Config** button
 
-9. Let's take a look at the raw config for this resource by clicking on the **View Config** button
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-8.png "Optional title")
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-9-v2.png "Optional title")
+9. Here we can see the raw configuration for this GKE cluster.
 
-10. Here we can see the raw configuration for this GKE cluster. Do you see anything that might present risks?
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-9.png "Optional title")
+
+10. To learn more let's investigate the findings associated with this GKE cluster. Close out the resource config and click on the **Attack Paths** tab.
 
 ![Alt text for image](/iac_screenshots/cloud-security-posture-management-10.png "Optional title")
 
-11. To learn more let's dig into the alerts associated with this GKE cluster and see if we can find out how to remediate any issues. Close out the resource config and click on the **Audit Trail** tab, then click on the red exclamation point.
+11. Note the **Findings Types** and see how they correlate with the Attack Path graph. Click on the **Internet Exposure** icon within the graph. Here we can see all the services associated with the host that make it vulnerable to outside attacks.
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-11-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-11.png "Optional title")
 
-12. Your screen should be similar to the screenshot below.
+12. Pan over to the right of the Attack Path graph and click on the **Privilege Escalation** icon within the graph. Here we can see that elevated privileges are assigned to the host. An adversary can destroy sensitive information stored in the cloud resources, making irreversible damage to Exampli's organization.
 
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-12-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-12.png "Optional title")
 
-13. Expand the **Config** icon in the **Policy Type** column towards the bottom of the page. Click on the number next to the **GCP Kubernetes cluster intra-node visibility disabled** alert in the **Alert Count** column.
+13. Let's revisit the Internet Exposure finding by reviewing the associated alert and finding out the proper remediation. Click on the **Alerts** tab.
 
-14. Your screen should look similar to the screen capture below.
+![Alt text for image](/iac_screenshots/cloud-security-posture-management-13.png "Optional title")
+
+14. Next, click on the Alerts ID for the **GCP VM instance that is internet reachable with unrestricted access (0.0.0.0/0)** policy. Here we can see an Overview as well as a Recommendation to resolve the issue.
 
 ![Alt text for image](/iac_screenshots/cloud-security-posture-management-14.png "Optional title")
 
-15. Here we see the bank-of-anthos resource is exposing east-west network traffic. If we click on the **Recommendation** tab we can see the recommended steps to resolve this issue.
+15. Click on the **Recommendation** tab. Here we can see the necessary steps to fix the exposed asset. 
 
 ![Alt text for image](/iac_screenshots/cloud-security-posture-management-15.png "Optional title")
 
-16. We can also choose to remediate this alert by clicking on the **remediate** option under the actions column. (This step requires admin access via a free trial or existing Prisma
-Cloud account)
-
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-16a.png "Optional title")
-
-![Alt text for image](/iac_screenshots/cloud-security-posture-management-16b.png "Optional title")
-
-17. In addition to the asset inventory and leading cloud management database Prisma Cloud makes compliance incredibly easy. Let's move on to the next exercise on compliance...
+In addition to the asset inventory and leading cloud management capabilities, Prisma Cloud makes compliance incredibly easy. Let's move on to the next exercise on compliance.
 
 #### Compliance in the Cloud
 
-Many organizations struggle maintaining a grasp on compliance in the cloud. So far we can inspected Exampli's IaC and found some troubling trends. Additionally, at runtime many assets are still vulnerable due to risky configurations and careless development practices.
+Many organizations struggle maintaining a grasp on compliance in the cloud. So far we have inspected Exampli's IaC and found some troubling trends. Additionally, at runtime many assets are still vulnerable due to risky configurations and careless development practices.
 
-With multiple upcoming compliance audits bearing down on Exampli's CISO's calendar it's time to begin reporting on what is in a failed state and what needs to be done to get the
-organization's cloud footprint compliant.
+With multiple upcoming compliance audits bearing down on Exampli's CISO's calendar it's time to begin reporting on what is in a failed state and what needs to be done to get the organization's cloud footprint compliant.
 
-1. Start by using the navigation bar and locate the **Compliance** module. Select **Overview**.
+1. Start by clicking the **Compliance** tab at the top of the UI. This page provides a high level view of all the unique assets and their associated adherence to various compliance frameworks and policies. When Prisma Cloud detects a violation of a policy it generates an alert.
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-1.png "Optional title")
 
-2. Your screen should look similar to the screen capture below:
+2. Leverage the filters to adjust the results and select **GCP** for the **Cloud Type**. Refine the filters even more and select the compliance framework **CIS v1.1.0 (GCP)**.
 
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-2-v2.png "Optional title")
+![Alt text for image](/iac_screenshots/compliance-in-the-cloud-2.png "Optional title")
 
-3. This page provides a high level view of all the unique assets and their associated adherence to various compliance frameworks and policies.
+3. Click on the Compliance Standard Name from the results to see which services have policies applied for that standard. Prisma Cloud provides a nice breakdown of each service type for easy referencing. 
 
-When Prisma Cloud detects a violation of a policy it generates an alert.
+![Alt text for image](/iac_screenshots/compliance-in-the-cloud-3.png "Optional title")
 
-4. Leverage the filters to adjust the results and select GCP.
+4. This provides a focused view of Exampli's GCP footprint and its adherence to this CIS Standard.
+
+It looks like the **Networking** service has a policy failure. Click on the red "i" icon under the **Failed** column. This will give us a view of the assets associated with the CIS policy failure. Your screen should look similar to the screen capture below :
 
 ![Alt text for image](/iac_screenshots/compliance-in-the-cloud-4.png "Optional title")
 
-5. Your screen should look similar to the screen capture below:
+5. Click on the **Alert ID** associated with the **default** Asset name. A side window opens that provides an Overview, Recommendation, Asset Config and Alert Rules. Additionally, the alert can be sent to a third party integration, like JIRA, for automated ticket creation. Reports can also be generated so you'll be ready for the next assessment and audit. 
 
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-5.png "Optional title")
+![Alt text for image](/iac_screenshots/compliance-in-the-cloud-5a.png "Optional title")
 
-6. We can now see Exampli's associated assets and their compliance posture. Looking at the trend graph it is easy to see how Exampli Corp compliance has changed over time.
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-6-v2.png "Optional title")
-
-7. Leverage the filters and select the compliance framework **CIS v1.1.0 (GCP)**.
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-7a.png "Optional title")
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-7b-v2.png "Optional title")
-
-8. This provides a focused view of Exampli's GCP footprint and its adherence to this CIS
-Standard.
-
-To view the associated policies with CIS click the **value** under the policies tab. Your screen should look similar to the screen capture below :
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-8-v2.png "Optional title")
-
-9. To learn more about a particular policy in Prisma Cloud, click on the **Show More** hyperlink to read the description and gain more context.
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-9.png "Optional title")
-
-10. Explore the different policies and their associated impact then navigate to the **Reports** module on the left hand side of the UI.
-
-Your screen should look similar to the screen capture below :
-
-![Alt text for image](/iac_screenshots/compliance-in-the-cloud-10-v2.png "Optional title")
-
-On this page administrators of Prisma Cloud can generate compliance reports that provide a summary of the information that is presented in the Prisma Cloud UI. This can be very helpful for sharing with auditors and leaders.
-
-Please explore some of the generated reports and their information.
+![Alt text for image](/iac_screenshots/compliance-in-the-cloud-5b.png "Optional title")
 
 In this lab we covered various topics around IaC security and CSPM but there are many additional features and capabilities within Prisma Cloud. Feel free to explore the UI and investigate different asset types.
 
@@ -370,3 +273,6 @@ The Prisma Cloud team here at Palo Alto sincerely hopes you enjoyed this worksho
 [KustomizeGoat - Vulnerable by design Kustomize deployment](https://github.com/bridgecrewio/kustomizegoat)
 
 [SupplyGoat- Vulnerable by design SCA](https://github.com/bridgecrewio/supplygoat)
+
+
+
