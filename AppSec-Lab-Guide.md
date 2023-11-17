@@ -48,7 +48,7 @@ Let's begin by exploring the power of shifting security left with Infrastructure
 ### Software Composition Analysis:
 
 
-1. Login to [Prisma Cloud](https://app3.prismacloud.io/auth/signin).
+1. Login to [Prisma Cloud](https://app3.prismacloud.io/login).
 
 2. Use the credentials provided by your Instructor to authenticate.
 
